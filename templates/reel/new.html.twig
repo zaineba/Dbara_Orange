@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New DbaraReel
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	<style>
+		.new-reel-page {
+			background-color: #ffffff;
+			padding: 20px;
+			margin: 20px auto;
+			width: 60%;
+			border-radius: 10px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+
+		.new-reel-page form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.new-reel-page label {
+			margin-bottom: 10px;
+		}
+
+		.new-reel-page input[type="text"],
+		.new-reel-page input[type="email"],
+		.new-reel-page input[type="tel"],
+		.new-reel-page input[type="file"] {
+			padding: 70px;
+			margin-bottom: 20px;
+			border: 1px solid #dddddd;
+			border-radius: 5px;
+		}
+
+		.new-reel-page button {
+			background-color: #007bff;
+			color: #ffffff;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			transition: background-color 0.3s;
+		}
+
+		.new-reel-page button:hover {
+			background-color: #0056b3;
+		}
+
+		.new-reel-page a {
+			color: #007bff;
+			text-decoration: none;
+			margin-top: 10px;
+		}
+
+		.padding-large {
+			padding: 20px;
+		}
+
+		.empty-container {
+			background-color: #f8f9fa;
+			height: 200px;
+		}
+
+		.form-table {
+			display: table;
+			width: 100%;
+		}
+
+		.form-row {
+			display: table-row;
+		}
+
+		.form-cell {
+			display: table-cell;
+			padding: 10px;
+		}
+	</style>
+{% endblock %}
+{% block body %}
+	{{ include('navbar/admin.html.twig') }}
+
+	<div class="new-reel-page">
+		<h1>Créer nouveau DbaraRéel</h1>
+
+
+		{{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+		<div class="form-table">
+			<div class="form-row">
+				<div class="form-cell">
+					{{ form_label(form.titre) }}
+				</div>
+				<div class="form-cell">
+					{{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-cell">
+					{{ form_label(form.video, 'URL de la vidéo') }}
+				</div>
+				<div class="form-cell">
+					{{ form_widget(form.video, {'attr': {'class': 'form-control', 'placeholder': 'Enter video URL'}}) }}
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-cell">
+					{{ form_label(form.chef) }}
+				</div>
+				<div class="form-cell">
+					{{ form_widget(form.chef, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-cell" colspan="2">
+					<button class="btn">{{ button_label|default('Enregistrer') }}</button>
+				</div>
+			</div>
+		</div>
+		{{ form_end(form) }}
+
+		<a href="{{ path('app_reel_index') }}">Retour</a>
+
+	</div>
+	{{ include('footer/admin.html.twig') }}
+	<div class="empty-container"></div>
+{% endblock %}

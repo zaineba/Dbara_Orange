@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+{% block title %}Chef
+{% endblock %}
+
+{% block stylesheets %}
+	<style>
+
+		{{parent()}}
+		.chef-details {
+			background-color: #ffffff;
+			padding: 20px;
+			margin: 20px auto; /* Ajout de la marge verticale et centrage horizontal */
+			width: 60%; /* Ajustement de la largeur du container */
+			border-radius: 10px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+
+		.table th {
+			background-color: #f8f9fa;
+		}
+
+		.chef-photo {
+			max-width: 400px;
+			max-height: 400px;
+			object-fit: cover;
+		}
+		.empty-container {
+			background-color: #f8f9fa;
+			height: 200px; /* Ajustez la hauteur selon vos besoins */
+			/* Ajoutez d'autres styles personnalisés si nécessaire */
+		}
+	</style>
+{% endblock %}
+
+
+{% block body %}
+
+	{{ include('navbar/admin.html.twig') }}
+	<div>
+
+		<div class="chef-details">
+
+			<h1>Chef</h1>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td>{{ chef.id }}</td>
+					</tr>
+					<tr>
+						<th>Nom</th>
+						<td>{{ chef.nom }}</td>
+					</tr>
+					<tr>
+						<th>Prénom</th>
+						<td>{{ chef.prenom }}</td>
+					</tr>
+					<tr>
+						<th>Spécialité</th>
+						<td>{{ chef.specialite }}</td>
+					</tr>
+					<tr>
+						<th>Email</th>
+						<td>{{ chef.email }}</td>
+					</tr>
+					<tr>
+						<th>Numéro de téléphone</th>
+						<td>{{ chef.numerotelephone }}</td>
+					</tr>
+					<tr>
+						<th>Photo</th>
+						<td>
+							{% if chef.photo %}
+								<img src="{{ asset('uploads/chef_photos/' ~ chef.photo) }}" alt="Photo du chef" class="chef-photo">
+							{% else %}
+								Aucune photo disponible
+							{% endif %}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<a href="{{ path('app_chef_index') }}">Retour</a>
+
+			<a href="{{ path('app_chef_edit', {'id': chef.id}) }}" class="btn btn-secondary">Modifier</a>
+
+			{{ include('chef/_delete_form.html.twig') }}
+		</div>
+	</div>
+	{{ include('footer/admin.html.twig') }}
+	<div class="empty-container"></div>
+{% endblock %}

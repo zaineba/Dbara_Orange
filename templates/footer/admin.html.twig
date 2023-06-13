@@ -1,0 +1,39 @@
+{% block footer %}
+	{% block stylesheets %}
+		<style>
+			.footer {
+				position: fixed;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				background-color: #f8f9fa;
+				padding: 20px;
+				text-align: center;
+			}
+			.footer p {
+				margin-bottom: 10px;
+			}
+
+			.footer-links a {
+				margin-right: 10px;
+				text-decoration: none;
+				color: #007bff;
+			}
+
+			.footer-links a:hover {
+				text-decoration: underline;
+			}
+		</style>
+
+	{% endblock %}
+	<footer class="footer">
+		<div class="container">
+			<p>© 2023 Mon Back Office</p>
+			<div class="footer-links">
+				<a href="#">Politique de confidentialité</a>
+				<a href="#">Conditions d'utilisation</a>
+				<a href="#">FAQ</a>
+			</div>
+		</div>
+	</footer>
+{% endblock %}

@@ -1,0 +1,149 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des chefs
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<style>
+		body {
+			background-color: #f8f9fa;
+		}
+
+		.chef-index-page {
+			background-color: #ffffff;
+			padding: 20px;
+		}
+
+		.table-clear-bg {
+			background-color: #ffffff;
+			margin-bottom: 20px;
+		}
+
+		.table-clear-bg th,
+		.table-clear-bg td {
+			padding: 10px;
+		}
+
+		.table-clear-bg a {
+			color: #ffffff;
+			background-color: #007bff;
+			border: none;
+			padding: 5px 10px;
+			margin-right: 5px;
+			text-decoration: none;
+			transition: background-color 0.3s;
+			border-radius: 5px;
+		}
+
+		.table-clear-bg a:hover {
+			background-color: #0056b3;
+		}
+
+		.no-records {
+			background-color: #e9ecef;
+			padding: 10px;
+			text-align: center;
+		}
+
+		.create-new-button {
+			display: inline-block;
+			background-color: #28a745;
+			color: #ffffff;
+			border: none;
+			padding: 10px 20px;
+			margin-top: 20px;
+			text-decoration: none;
+			transition: background-color 0.3s;
+			border-radius: 5px;
+		}
+
+		.create-new-button:hover {
+			background-color: #218838;
+		}
+
+		.delete-button {
+			background-color: #dc3545;
+			transition: background-color 0.3s;
+		}
+
+		.delete-button:hover {
+			background-color: #c82333;
+		}
+		.empty-container {
+			background-color: #f8f9fa;
+			height: 200px; /* Ajustez la hauteur selon vos besoins */
+			/* Ajoutez d'autres styles personnalisés si nécessaire */
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	{{ include('navbar/admin.html.twig') }}
+
+	<div class="chef-index-page">
+		<div class="row">
+			<div class="col-6">
+				<h1>Liste des chefs</h1>
+			</div>
+			<div class="col-6 text-end">
+				<a href="{{ path('app_chef_new') }}" class="btn btn-lg btn-success animate__animated animate__bounce">
+					Ajouter
+				</a>
+			</div>
+		</div>
+		<table class="table table-clear-bg">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Photo</th>
+					<th>Spécialité</th>
+					<th>Email</th>
+					<th>Numéro de téléphone</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for chef in chefs %}
+					<tr>
+						<td>{{ chef.id }}</td>
+						<td>{{ chef.nom }}</td>
+						<td>{{ chef.prenom }}</td>
+						<td>
+							{% if chef.photo %}
+								<img src="{{ asset('uploads/chef_photos/' ~ chef.photo) }}" alt="Photo" width="100">
+							{% else %}
+								pas de photos
+							{% endif %}
+						</td>
+						<td>{{ chef.specialite }}</td>
+						<td>{{ chef.email }}</td>
+						<td>{{ chef.numerotelephone }}</td>
+
+						<td>
+							<a href="{{ path('app_chef_show', {'id': chef.id}) }}" class="btn btn-primary">
+								<i class="bi bi-eye"></i>
+							</a>
+							<a href="{{ path('app_chef_edit', {'id': chef.id}) }}" class="btn btn-warning">
+								<i class="bi bi-pencil"></i>
+							</a>
+							<a href="{{ path('app_chef_delete', {'id': chef.id}) }}" class="btn btn-danger">
+								<i class="bi bi-trash"></i>
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="8">Pas de chefs</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	{{ include('footer/admin.html.twig') }}
+	<div class="empty-container"></div>
+
+{% endblock %}

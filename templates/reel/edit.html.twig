@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DbaraReel{% endblock %}
+
+{% block body %}
+    <h1>Edit DbaraReel</h1>
+
+    {{ include('reel/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_reel_index') }}">back to list</a>
+
+    {{ include('reel/_delete_form.html.twig') }}
+{% endblock %}

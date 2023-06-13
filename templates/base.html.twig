@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				Dbara By Orange
+			{% endblock %}
+		</title>
+
+		<style>
+			.logo-img {
+				width: 16px; /* Ajustez la largeur souhaitée */
+				height: 16px; /* La hauteur s'ajustera automatiquement en conservant les proportions */
+			}
+		</style>
+
+		{% block stylesheets %}{% endblock %}
+	</head>
+	<body>
+
+		{% block body %}{% endblock %}
+
+		<!-- Bootstrap JS -->
+
+		{% block javascripts %}{% endblock %}
+	</body>
+</html>

@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jeu Admin
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<style>
+		body {
+			background-color: #f8f9fa;
+		}
+
+		.recette-index-page {
+			background-color: #ffffff;
+			padding: 20px;
+		}
+
+		.table-clear-bg {
+			background-color: #ffffff;
+			margin-bottom: 20px;
+		}
+
+		.table-clear-bg th,
+		.table-clear-bg td {
+			padding: 10px;
+		}
+
+		.table-clear-bg a {
+			color: #ffffff;
+			background-color: #007bff;
+			border: none;
+			padding: 5px 10px;
+			margin-right: 5px;
+			text-decoration: none;
+			transition: background-color 0.3s;
+			border-radius: 5px;
+		}
+
+		.table-clear-bg a:hover {
+			background-color: #0056b3;
+		}
+
+		.no-records {
+			background-color: #e9ecef;
+			padding: 10px;
+			text-align: center;
+		}
+
+		.create-new-button {
+			display: inline-block;
+			background-color: #28a745;
+			color: #ffffff;
+			border: none;
+			padding: 10px 20px;
+			margin-top: 20px;
+			text-decoration: none;
+			transition: background-color 0.3s;
+			border-radius: 5px;
+		}
+
+		.create-new-button:hover {
+			background-color: #218838;
+		}
+
+		.delete-button {
+			background-color: #dc3545;
+			transition: background-color 0.3s;
+		}
+
+		.delete-button:hover {
+			background-color: #c82333;
+		}
+
+		.empty-container {
+			background-color: #f8f9fa;
+			height: 200px; /* Ajustez la hauteur selon vos besoins */
+			/* Ajoutez d'autres styles personnalisés si nécessaire */
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	{{ include('navbar/admin.html.twig') }}
+
+	<div class="container bg-white py-5">
+		<div class="row justify-content-center">
+			<div class="col-md-6 text-center">
+				<h1>Choisissez un jeu :</h1>
+			</div>
+		</div>
+		<div class="row justify-content-center mt-5">
+			<div class="col-md-6 text-center">
+				<div class="d-flex align-items-center justify-content-center">
+					<img src="{{ asset('img/ahlatawla.jpeg') }}" alt="A7la Tawla" class="game-image" width="200" height="200">
+					<button class="btn btn-primary btn-lg ml-3" onclick="confirmActivation('{{ path('app_a7la_tawla') }}')">
+						<span class="mt-2">Activer A7la Tawla</span>
+					</button>
+				</div>
+				<p class="mt-2">Phrase pour le jeu A7la Tawla</p>
+			</div>
+		</div>
+		<div class="row justify-content-center mt-3">
+			<div class="col-md-6 text-center">
+				<div class="d-flex align-items-center justify-content-center">
+					<img src="{{ asset('img/tchanchina.jpeg') }}" alt="Tchanchina" class="game-image" width="200" height="200">
+					<button class="btn btn-primary btn-lg ml-3" onclick="confirmActivation('{{ path('app_tchanchina') }}')">
+						<span class="mt-2">Activer Tchanchina</span>
+					</button>
+				</div>
+				<p class="mt-2">Phrase pour le jeu Tchanchina</p>
+			</div>
+		</div>
+		<div class="row justify-content-center mt-3">
+			<div class="col-md-6 text-center">
+				<div class="d-flex align-items-center justify-content-center">
+					<img src="{{ asset('img/quiz.png') }}" alt="Quiz Har/Hlow" class="game-image" width="200" height="200">
+					<button class="btn btn-primary btn-lg ml-3" onclick="confirmActivation('{{ path('app_quiz') }}')">
+						<span class="mt-2">Activer le Quiz Har/Hlow</span>
+					</button>
+				</div>
+				<p class="mt-2">Phrase pour le jeu Quiz Har/Hlow</p>
+			</div>
+		</div>
+	</div>
+
+	{{ include('footer/admin.html.twig') }}
+	<div class="empty-container"></div>
+
+	<script>
+		function confirmActivation(path) {
+if (confirm("Êtes-vous sûr de vouloir activer ce jeu ?")) {
+window.location.href = path;
+}
+}
+	</script>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DbaraReel
+{% endblock %}
+
+
+{% block stylesheets %}
+	<style>
+
+		{{parent()}}
+		.reel-details {
+			background-color: #ffffff;
+			padding: 20px;
+			margin: 20px auto; /* Ajout de la marge verticale et centrage horizontal */
+			width: 60%; /* Ajustement de la largeur du container */
+			border-radius: 10px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+
+		.table th {
+			background-color: #f8f9fa;
+		}
+
+
+		.empty-container {
+			background-color: #f8f9fa;
+			height: 200px; /* Ajustez la hauteur selon vos besoins */
+			/* Ajoutez d'autres styles personnalisés si nécessaire */
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	{{ include('navbar/admin.html.twig') }}
+	<div>
+		<div class="reel-details">
+			<h1>Dbara Réel</h1>
+
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td>{{ dbara_reel.id }}</td>
+					</tr>
+					<tr>
+						<th>Titre</th>
+						<td>{{ dbara_reel.titre }}</td>
+					</tr>
+					<tr>
+						<th>Video</th>
+						<td>
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ dbara_reel.videoId }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+		</div>
+	</div>
+
+
+	<a href="{{ path('app_reel_index') }}" class="btn btn-primary">Retour à la liste</a>
+
+	<a href="{{ path('app_reel_edit', {'id': dbara_reel.id}) }}" class="btn btn-secondary">Modifier</a>
+
+
+	{{ include('reel/_delete_form.html.twig') }}
+	{{ include('footer/admin.html.twig') }}
+	<div class="empty-container"></div>
+{% endblock %}
